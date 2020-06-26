@@ -19,18 +19,24 @@ const userMiddleware = {
             if(error) {
                 return res.status(401).send({
                     status: 401,
-                    message: 'El token de acceso ha expirado'
+                    message: 'El token de acceso no existe'
                 });
             }
             else{
-                userModel.findOne({'token': `${token}`}, function(err, userData){
+                userModel.findOne({'token': `${token}`}, ['id','firstname','lastname','phone','email','sex','status'], function(error, userData){
+                    if(error){
+                        return res.status(500).send({
+                            status: 500,
+                            message: 'Error interno del servidor',
+                        });
+                    }
                     if(userData == null){
                         return res.status(401).send({
                             status: 401,
-                            message: 'Parece que tu session ha expirad'
+                            message: 'Parece que tu session ha expirado'
                         });
                     }
-                    if(userData.status){
+                    if(!userData.status){
                         return res.status(401).send({
                             status: 401,
                             message: 'Parece que tu cuenta ha sido bloqueada'

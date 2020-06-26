@@ -19,7 +19,13 @@ router.get('/logout', function(req, res) {
 router.get('/profile', userMiddleware.getToken, function(req, res) {
     return res.status(200).send({
         status: 200,
-        data: req.token
+        data: {
+            email: req.token.email,
+            firstname: req.token.firstname,
+            lastname: req.token.lastname,
+            phone: req.token.phone,
+            sex: req.token.sex,
+        }
     });
 });
 
