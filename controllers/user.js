@@ -134,10 +134,29 @@ const userController = {
 
     login: function(req, res) {
 
-        if(!req.body.email || !req.body.password){
+        let errors = 0;
+        let errorData = {};
+
+        if(!req.body.email){
+            errorData.email = "El campo email es requerido";
+            errors++;
+        } else {
+            if(!emailValidate.test(req.body.email)) {
+                errorData.email = "El campo email no es valido";
+                errors++;
+            }
+        }
+        
+        if(!req.body.password){
+            errorData.password = "El campo clave es requerido";
+            errors++;
+        }
+
+        if(errors){
             return res.status(403).send({
                 status: 403,
-                message: 'Parece que no se enviaron los parametros',
+                errors: errorData,
+                message: 'Por favor completa tus datos',
             });
         }
 
