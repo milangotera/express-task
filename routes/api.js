@@ -5,7 +5,7 @@ const userController = require('../controllers/user');
 const userMiddleware = require('../middlewares/user');
 
 router.post('/signin', function(req, res) {
-    DriverController.signin(req, res);
+    userController.signin(req, res);
 });
 
 router.post('/login', function(req, res) {

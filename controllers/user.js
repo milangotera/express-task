@@ -35,16 +35,15 @@ const userController = {
             errors++;
         }
         if(!req.body.password){
-            errorData.password = "El campo password es requerido";
+            errorData.password = "El campo clave es requerido";
             errors++;
         }
         if(!req.body.password_repeat){
-            errorData.password_repeat = "El campo password es requerido";
+            errorData.password_repeat = "El campo repite clave es requerido";
             errors++;
-        }
-        if(req.body.password_repea && req.body.password){
-            if(req.body.password_repea != req.body.password){
-                errorData.password_repeat = "El campo password no coincide";
+        } else {
+            if(req.body.password_repeat != req.body.password){
+                errorData.password_repeat = "Las claves no coinciden";
                 errors++;
             }
         }
