@@ -12,7 +12,7 @@ router.post('/login', function(req, res) {
     userController.login(req, res);
 });
 
-router.get('/logout', function(req, res) {
+router.get('/logout', userMiddleware.getToken, function(req, res) {
     userController.logout(req, res);
 });
 
