@@ -8,16 +8,19 @@ const taskController = {
         taskModel
         .find({ user: req.token.id }, ["id", "name", "priority", "expires", "status"])
         .exec(function (error, taskData) {
+            
             if(error) {
                 return res.status(500).send({
                     status: 500,
                     message: 'Error interno del servidor'
                 });
             }
+
             return res.status(200).send({
                 status: 200,
                 data: taskData,
             });
+
         });
     },
 
