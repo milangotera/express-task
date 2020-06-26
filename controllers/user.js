@@ -102,6 +102,7 @@ const userController = {
                     email: email,
                     sex: sex,
                     password: md5(password),
+                    status: true,
                 });
 
                 newUser.save(function(error, userData){
@@ -135,7 +136,7 @@ const userController = {
             });
         }
 
-        userModel.findOne({ email: req.body.email, password: req.body.password }, function(error, userData){
+        userModel.findOne({ email: req.body.email, password: md5(req.body.password) }, function(error, userData){
              
             if(error){
                 return res.status(500).send({
