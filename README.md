@@ -38,3 +38,5 @@ npm start
 - Angular Task (https://github.com/milang90/angular-task)
 
 - Ionic Task (https://github.com/milang90/ionic-task)
+
+- Laravel Task (https://github.com/milang90/laravel-task-checked)
