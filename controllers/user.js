@@ -172,7 +172,7 @@ const userController = {
             if(!userData){
                 return res.status(409).send({
                     status: 409,
-                    message: `Combinacion de email y contraseña incorrectos`,
+                    message: `Credenciales incorrectas`,
                 });
             }
 
