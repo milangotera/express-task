@@ -1,9 +1,9 @@
 'use strict';
 
 const userModel = require('../models/user');
-const taskModel = require('../models/task');
 const userMiddleware = require('../middlewares/user');
 const md5 = require('md5');
+const emailValidate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 const userController = {
 
@@ -29,6 +29,11 @@ const userController = {
         if(!req.body.email){
             errorData.email = "El campo email es requerido";
             errors++;
+        } else {
+            if(!emailValidate.test(req.body.email)) {
+                errorData.email = "El campo email no es valido";
+                errors++;
+            }
         }
         if(!req.body.sex){
             errorData.sex = "El campo genero es requerido";
