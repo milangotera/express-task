@@ -2,6 +2,7 @@
 
 const router = require('express').Router();
 const userController = require('../controllers/user');
+const taskController = require('../controllers/task');
 const userMiddleware = require('../middlewares/user');
 
 router.post('/signin', function(req, res) {
@@ -27,6 +28,22 @@ router.get('/profile', userMiddleware.getToken, function(req, res) {
             sex: req.token.sex,
         }
     });
+});
+
+router.get('/task', userMiddleware.getToken, function(req, res) {
+    taskController.list(req, res);
+});
+
+router.post('/task', userMiddleware.getToken, function(req, res) {
+    taskController.create(req, res);
+});
+
+router.put('/task', userMiddleware.getToken, function(req, res) {
+    taskController.update(req, res);
+});
+
+router.delete('/task', userMiddleware.getToken, function(req, res) {
+    taskController.delete(req, res);
 });
 
 module.exports = router;

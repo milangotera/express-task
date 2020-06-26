@@ -7,9 +7,10 @@ mongoose.plugin(require('meanie-mongoose-to-json'));
 var Schema = mongoose.Schema;
 
 var taskSchema = new Schema({
-    name: { type: String, default: null }, 
+    name: { type: String, default: null },
+    description: { type: String, default: null },
     priority: { type: String, default: null },
-    expires: { type: Timestamp, default: null },
+    expires: { type: Number, default: 0 },
     status: { type: Boolean, default: false },
     user: { type: Schema.ObjectId, ref: "users" },
 },{
