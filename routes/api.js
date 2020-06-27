@@ -42,7 +42,7 @@ router.put('/task', userMiddleware.getToken, function(req, res) {
     taskController.update(req, res);
 });
 
-router.delete('/task', userMiddleware.getToken, function(req, res) {
+router.delete('/task/:id', userMiddleware.getToken, function(req, res) {
     taskController.delete(req, res);
 });
 

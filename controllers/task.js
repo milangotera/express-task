@@ -6,7 +6,7 @@ const taskController = {
 
     list: function(req, res) {
         taskModel
-        .find({ user: req.token.id }, ["id", "name", "priority", "expires", "status"])
+        .find({ user: req.token.id }, ["id", "name", "description", "priority", "expires", "status"])
         .exec(function (error, taskData) {
             
             if(error) {
@@ -194,7 +194,7 @@ const taskController = {
         let errors = 0;
         let errorData = {};
 
-        if(!req.body.id){
+        if(!req.params.id){
             errorData.id = "El campo id es requerido";
             errors++;
         }
@@ -207,7 +207,7 @@ const taskController = {
             });
         }
 
-        taskModel.findOne({ 'user': `${req.token.id}`, '_id': `${req.body.id}` }, function(error, taskData){
+        taskModel.findOne({ 'user': `${req.token.id}`, '_id': `${req.params.id}` }, function(error, taskData){
             
             if(error){
                 return res.status(500).send({
